@@ -31,7 +31,7 @@ public class Discordbot {
                     .build()
                     .login()
                     .block();
-            sendMsg("Bot Ready");
+//            sendMsg("Bot Ready");
 //            Client.onDisconnect().block();
         } catch (Exception e) {
             logger.error("Discordbot start error", e);

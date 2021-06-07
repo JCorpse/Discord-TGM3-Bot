@@ -65,7 +65,6 @@
                 <configuration>
                     <appName>discord-tgm3-bot</appName>
                     <jdkVersion>15</jdkVersion>
-                    <includeTarget>false</includeTarget>
                     <processTypes>
                         <worker>java -jar target/TGM3DiscordBot-jar-with-dependencies.jar</worker>
                     </processTypes>
