@@ -32,6 +32,7 @@
     </dependencies>
 
     <build>
+        <finalName>TGM3DiscordBot</finalName>
         <plugins>
             <plugin>
                 <groupId>com.heroku.sdk</groupId>
@@ -40,7 +41,7 @@
                 <configuration>
                     <appName>discord-tgm3-bot</appName>
                     <processTypes>
-                        <worker>java $JAVA_OPTS -cp targe/classes:target/dependency/* idv.sd.bot.twitch.Twitchbot.Main</worker>
+                        <worker>java $JAVA_OPTS -jar ./target/${project.build.finalName}.jar</worker>
                     </processTypes>
                     <logProgress>true</logProgress>
                 </configuration>
