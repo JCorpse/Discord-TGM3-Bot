@@ -21,8 +21,8 @@ import java.util.function.Consumer;
 
 public class Twitchbot {
     private final Logger logger = LoggerFactory.getLogger(Twitchbot.class);
-    private final String OAUTH = "";
-    private final String ChannelName = "";
+    private final String OAUTH = "0jawn0kj0wndipg34i714w9133vzz9";
+    private final String ChannelName = "tetristhegrandmaster3";
     private OAuth2Credential Credential = new OAuth2Credential("twitch", OAUTH);
     private Discordbot Discordbot = new Discordbot();
     private DateTimeFormatter Formatter;

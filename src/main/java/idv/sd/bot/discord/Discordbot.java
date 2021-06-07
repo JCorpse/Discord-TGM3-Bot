@@ -18,8 +18,8 @@ import org.slf4j.LoggerFactory;
 
 public class Discordbot {
     private final Logger logger = LoggerFactory.getLogger(Discordbot.class);
-    private final String TOKEN = "";
-    private final String ChannelId = "";
+    private final String TOKEN = "ODUxMTI1MDU5MTUzMTY2MzM2.YLzt-w.WEkznQCFa2cZ0mcu3WP-4Qv_HTQ";
+    private final String ChannelId = "851115142900875337";
     private GatewayDiscordClient Client;
 
     public Discordbot() {
@@ -37,6 +37,7 @@ public class Discordbot {
                     .build()
                     .login()
                     .block();
+            sendMsg("Bot Ready");
 //            Client.onDisconnect().block();
         } catch (Exception e) {
             logger.error("Discordbot start error", e);

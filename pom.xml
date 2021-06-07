@@ -40,7 +40,7 @@
                 <configuration>
                     <appName>discord-tgm3-bot</appName>
                     <processTypes>
-                        <worker>worker: java -jar target/discord-tgm3-bot.jar</worker>
+                        <worker>java $JAVA_OPTS -cp target/idv.sd.bot.twitch.Twitchbot:target/dependency/* Main</worker>
                     </processTypes>
                 </configuration>
             </plugin>
