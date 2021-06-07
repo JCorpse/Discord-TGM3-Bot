@@ -42,6 +42,7 @@
                     <processTypes>
                         <worker>java $JAVA_OPTS -cp targe/classes:target/dependency/* idv.sd.bot.twitch.Twitchbot.Main</worker>
                     </processTypes>
+                    <logProgress>true</logProgress>
                 </configuration>
             </plugin>
         </plugins>
