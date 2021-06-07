@@ -40,6 +40,7 @@
                 <version>3.0.3</version>
                 <configuration>
                     <appName>discord-tgm3-bot</appName>
+                    <jdkVersion>15</jdkVersion>
                     <processTypes>
                         <worker>java $JAVA_OPTS -jar ./target/${project.build.finalName}.jar</worker>
                     </processTypes>
