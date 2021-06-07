@@ -42,7 +42,7 @@
                     <appName>discord-tgm3-bot</appName>
                     <jdkVersion>15</jdkVersion>
                     <processTypes>
-                        <worker>java $JAVA_OPTS -jar ./target/${project.build.finalName}.jar</worker>
+                        <worker>java $JAVA_OPTS -cp target/classes:target/dependency/* idv.sd.bot.twitch.Twitchbot</worker>
                     </processTypes>
                     <logProgress>true</logProgress>
                 </configuration>
