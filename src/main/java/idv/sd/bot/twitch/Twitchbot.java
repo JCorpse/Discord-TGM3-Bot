@@ -6,7 +6,8 @@ import com.github.twitch4j.TwitchClientBuilder;
 import com.github.twitch4j.helix.domain.UserList;
 import com.github.twitch4j.pubsub.events.*;
 import idv.sd.bot.discord.Discordbot;
-
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.text.DecimalFormat;
 import java.time.Instant;
@@ -16,6 +17,7 @@ import java.util.Arrays;
 import java.util.Locale;
 
 public class Twitchbot {
+    private final Logger logger = LoggerFactory.getLogger(Twitchbot.class);
     private final String OAUTH = "0jawn0kj0wndipg34i714w9133vzz9";
     private final String ChannelName = "tetristhegrandmaster3";
     private OAuth2Credential Credential = new OAuth2Credential("twitch", OAUTH);
