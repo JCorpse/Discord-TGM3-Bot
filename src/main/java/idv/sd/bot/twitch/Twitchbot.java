@@ -106,8 +106,7 @@ public class Twitchbot {
     }
 
     public void Bitslistener() {
-        Client.getPubSub().listenForCheerEvents(Credential, ChannelId);
-
-        Client.getEventManager().onEvent(ChannelBitsEvent.class, System.out::println);
+        Client.getPubSub().listenForPublicCheerEvents(Credential, ChannelId);
+        Client.getEventManager().onEvent(CheerbombEvent.class, System.out::println);
     }
 }
