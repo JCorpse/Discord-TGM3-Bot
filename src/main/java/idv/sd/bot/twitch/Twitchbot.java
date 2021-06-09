@@ -40,6 +40,7 @@ public class Twitchbot {
         getChannelId(ChannelName);
         HypeTrainlistener();
         Bitslistener();
+        logger.info("Twitchbot Ready");
     }
 
     private void init() {

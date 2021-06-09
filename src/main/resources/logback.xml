@@ -3,8 +3,8 @@
 <configuration scan="true">
     <!-- Configure Twitch4J logger level -->
     <logger name="com.github.twitch4j" level="INFO"/>
-    <logger name="idv.sd.bot.twitch" level="INFO"/>
-    <logger name="idv.sd.bot.discord" level="INFO"/>
+    <logger name="idv.sd.bot.twitch.*" level="INFO"/>
+    <logger name="idv.sd.bot.discord.*" level="INFO"/>
 
     <!-- Appender Configuration [Console] -->
     <appender name="CONSOLE" class="ch.qos.logback.core.ConsoleAppender">
