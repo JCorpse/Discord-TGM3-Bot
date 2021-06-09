@@ -17,7 +17,7 @@ import java.util.Arrays;
 import java.util.Locale;
 
 public class Twitchbot {
-    //    private final Logger logger = LoggerFactory.getLogger(Twitchbot.class);
+    private final Logger logger = LoggerFactory.getLogger(Twitchbot.class);
     private final String OAUTH = "0jawn0kj0wndipg34i714w9133vzz9";
     private final String ChannelName = "tetristhegrandmaster3";
     private OAuth2Credential Credential = new OAuth2Credential("twitch", OAUTH);
@@ -66,11 +66,12 @@ public class Twitchbot {
 
         Client.getEventManager().onEvent(HypeTrainStartEvent.class, (Event) -> {
 //            HypeTrainID = Event.getData().getId();
-            System.out.println(Event.getData().getId());
+//            System.out.println(Event.getData().getId());
+            logger.info(Event.getData().getId());
         });
 
         Client.getEventManager().onEvent(HypeTrainProgressionEvent.class, (Event) -> {
-            System.out.println(Event);
+            logger.info(Event.toString());
             LastLevel = Event.getData().getProgress().getLevel().getValue();
             LastProgress = Event.getData().getProgress().getValue();
             LastGoal = Event.getData().getProgress().getGoal();
@@ -80,13 +81,13 @@ public class Twitchbot {
 
         });
         Client.getEventManager().onEvent(HypeTrainLevelUpEvent.class, (Event) -> {
-            System.out.println(Event);
+            logger.info(Event.toString());
             LastLevel = Event.getData().getProgress().getLevel().getValue();
             LastProgress = Event.getData().getProgress().getValue();
             LastGoal = Event.getData().getProgress().getGoal();
         });
         Client.getEventManager().onEvent(HypeTrainEndEvent.class, (Event) -> {
-            System.out.println(Event);
+            logger.info(Event.toString());
             Instant EndTime = Event.getData().getEndedAt();
             String Percent = (new DecimalFormat("#.##").format((float) (LastProgress / LastGoal) * 100));
             Discordbot.sendMsg(
@@ -96,17 +97,19 @@ public class Twitchbot {
                             "========================");
         });
         Client.getEventManager().onEvent(HypeTrainConductorUpdateEvent.class, (Event) -> {
-            System.out.println(Event);
+            logger.info(Event.toString());
 //            Discordbot.sendMsg(Event.getData().toString());
         });
         Client.getEventManager().onEvent(HypeTrainCooldownExpirationEvent.class, (Event) -> {
-            System.out.println(Event);
-//            Discordbot.sendMsg(Event.getFiredAt().toString());
+            logger.info(Event.toString());
+            //            Discordbot.sendMsg(Event.getFiredAt().toString());
         });
     }
 
     public void Bitslistener() {
         Client.getPubSub().listenForPublicCheerEvents(Credential, ChannelId);
-        Client.getEventManager().onEvent(CheerbombEvent.class, System.out::println);
+        Client.getEventManager().onEvent(CheerbombEvent.class, (Event) -> {
+            logger.info(Event.toString());
+        });
     }
 }
