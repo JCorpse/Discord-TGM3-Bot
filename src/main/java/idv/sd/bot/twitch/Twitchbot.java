@@ -17,7 +17,7 @@ import java.util.Arrays;
 import java.util.Locale;
 
 public class Twitchbot {
-    private final Logger logger = LoggerFactory.getLogger(Twitchbot.class);
+//    private final Logger logger = LoggerFactory.getLogger(Twitchbot.class);
     private final String OAUTH = "0jawn0kj0wndipg34i714w9133vzz9";
     private final String ChannelName = "tetristhegrandmaster3";
     private OAuth2Credential Credential = new OAuth2Credential("twitch", OAUTH);
@@ -46,6 +46,7 @@ public class Twitchbot {
                 .withEnablePubSub(true)
                 .withEnableHelix(true)
                 .withDefaultAuthToken(Credential)
+//                .withFeignLogLevel()
                 .build();
         Formatter = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss")
                 .withLocale(Locale.TAIWAN)
@@ -61,9 +62,11 @@ public class Twitchbot {
 
     public void HypeTrainlistener() {
         Client.getPubSub().listenForHypeTrainEvents(Credential, ChannelId);
-//        Client.getEventManager().onEvent(HypeTrainStartEvent.class, (Event) -> {
+
+        Client.getEventManager().onEvent(HypeTrainStartEvent.class, (Event) -> {
 //            HypeTrainID = Event.getData().getId();
-//        });
+            System.out.println(Event.getData().getId());
+        });
 
         Client.getEventManager().onEvent(HypeTrainProgressionEvent.class, (Event) -> {
             System.out.println(Event);
@@ -91,13 +94,13 @@ public class Twitchbot {
                             "貼圖等級: " + LastLevel + "-" + Percent + "%\n" +
                             "========================");
         });
-//        Client.getEventManager().onEvent(HypeTrainConductorUpdateEvent.class, (Event) -> {
-//            System.out.println(Event);
+        Client.getEventManager().onEvent(HypeTrainConductorUpdateEvent.class, (Event) -> {
+            System.out.println(Event);
 //            Discordbot.sendMsg(Event.getData().toString());
-//        });
-//        Client.getEventManager().onEvent(HypeTrainCooldownExpirationEvent.class, (Event) -> {
-//            System.out.println(Event);
+        });
+        Client.getEventManager().onEvent(HypeTrainCooldownExpirationEvent.class, (Event) -> {
+            System.out.println(Event);
 //            Discordbot.sendMsg(Event.getFiredAt().toString());
-//        });
+        });
     }
 }
