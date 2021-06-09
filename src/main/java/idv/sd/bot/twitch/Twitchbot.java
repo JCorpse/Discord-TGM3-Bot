@@ -17,7 +17,7 @@ import java.util.Arrays;
 import java.util.Locale;
 
 public class Twitchbot {
-//    private final Logger logger = LoggerFactory.getLogger(Twitchbot.class);
+    //    private final Logger logger = LoggerFactory.getLogger(Twitchbot.class);
     private final String OAUTH = "0jawn0kj0wndipg34i714w9133vzz9";
     private final String ChannelName = "tetristhegrandmaster3";
     private OAuth2Credential Credential = new OAuth2Credential("twitch", OAUTH);
@@ -39,6 +39,7 @@ public class Twitchbot {
         init();
         getChannelId(ChannelName);
         HypeTrainlistener();
+        Bitslistener();
     }
 
     private void init() {
@@ -102,5 +103,11 @@ public class Twitchbot {
             System.out.println(Event);
 //            Discordbot.sendMsg(Event.getFiredAt().toString());
         });
+    }
+
+    public void Bitslistener() {
+        Client.getPubSub().listenForCheerEvents(Credential, ChannelId);
+
+        Client.getEventManager().onEvent(ChannelBitsEvent.class, System.out::println);
     }
 }
