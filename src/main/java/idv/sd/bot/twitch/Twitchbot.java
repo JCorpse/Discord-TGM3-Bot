@@ -28,6 +28,7 @@ public class Twitchbot {
     private Integer LastLevel;
     private Integer LastProgress;
     private Integer LastGoal;
+    private String Percent;
 //    private String HypeTrainID;
 
     public static void main(String[] args) {
@@ -75,22 +76,19 @@ public class Twitchbot {
             logger.info(Event.toString());
             LastLevel = Event.getData().getProgress().getLevel().getValue();
             LastProgress = Event.getData().getProgress().getValue();
-            LastGoal = Event.getData().getProgress().getGoal();
-            String Percent = (new DecimalFormat("#.##").format(((float) LastProgress / LastGoal) * 100));
-            System.out.println(LastLevel + "-" + Percent + "%");
-            System.out.println(LastLevel + "-" + Percent + "%");
+            LastGoal = Event.getData().getProgress().getLevel().getGoal();
+            Percent = (new DecimalFormat("#.##").format(((float) LastProgress / LastGoal) * 100));
 
         });
         Client.getEventManager().onEvent(HypeTrainLevelUpEvent.class, (Event) -> {
             logger.info(Event.toString());
             LastLevel = Event.getData().getProgress().getLevel().getValue();
             LastProgress = Event.getData().getProgress().getValue();
-            LastGoal = Event.getData().getProgress().getGoal();
+            LastGoal = Event.getData().getProgress().getLevel().getGoal();
         });
         Client.getEventManager().onEvent(HypeTrainEndEvent.class, (Event) -> {
             logger.info(Event.toString());
             Instant EndTime = Event.getData().getEndedAt();
-            String Percent = (new DecimalFormat("#.##").format((float) (LastProgress / LastGoal) * 100));
             Discordbot.sendMsg(
                     "==== 列車發車記錄(v0.3) ====\n" +
                             "列車離站時間: " + Formatter.format(EndTime) + "\n" +
