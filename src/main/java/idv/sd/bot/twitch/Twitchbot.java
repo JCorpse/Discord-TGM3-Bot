@@ -18,7 +18,7 @@ import java.util.Locale;
 
 public class Twitchbot {
     private final Logger logger = LoggerFactory.getLogger(Twitchbot.class);
-    private final String OAUTH = "0jawn0kj0wndipg34i714w9133vzz9";
+    private final String OAUTH = "hwf7l22bvrpxshg1242xrzm9y67sqg";
     private final String ChannelName = "tetristhegrandmaster3";
     private OAuth2Credential Credential = new OAuth2Credential("twitch", OAUTH);
     private Discordbot Discordbot = new Discordbot();
@@ -89,11 +89,11 @@ public class Twitchbot {
         Client.getEventManager().onEvent(HypeTrainEndEvent.class, (Event) -> {
             logger.info(Event.toString());
             Instant EndTime = Event.getData().getEndedAt();
-            Discordbot.sendMsg(
-                    "==== 列車發車記錄(v0.3) ====\n" +
-                            "列車離站時間: " + Formatter.format(EndTime) + "\n" +
-                            "貼圖等級: " + LastLevel + "-" + Percent + "%\n" +
-                            "========================");
+//            Discordbot.sendMsg(
+//                    "==== 列車發車記錄(v0.3) ====\n" +
+//                            "列車離站時間: " + Formatter.format(EndTime) + "\n" +
+//                            "貼圖等級: " + LastLevel + "-" + Percent + "%\n" +
+//                            "========================");
         });
         Client.getEventManager().onEvent(HypeTrainConductorUpdateEvent.class, (Event) -> {
             logger.info(Event.toString());
@@ -106,8 +106,8 @@ public class Twitchbot {
     }
 
     public void Bitslistener() {
-        Client.getPubSub().listenForPublicCheerEvents(Credential, ChannelId);
-        Client.getEventManager().onEvent(CheerbombEvent.class, (Event) -> {
+        Client.getPubSub().listenForCheerEvents(Credential, ChannelId);
+        Client.getEventManager().onEvent(ChannelBitsEvent.class, (Event) -> {
             logger.info(Event.toString());
         });
     }
