@@ -40,7 +40,7 @@ public class Twitchbot {
         init();
         getChannelId(ChannelName);
         HypeTrainlistener();
-        Bitslistener();
+//        Bitslistener();
         logger.info("Twitchbot Ready");
     }
 
@@ -89,11 +89,11 @@ public class Twitchbot {
         Client.getEventManager().onEvent(HypeTrainEndEvent.class, (Event) -> {
             logger.info(Event.toString());
             Instant EndTime = Event.getData().getEndedAt();
-//            Discordbot.sendMsg(
-//                    "==== 列車發車記錄(v0.3) ====\n" +
-//                            "列車離站時間: " + Formatter.format(EndTime) + "\n" +
-//                            "貼圖等級: " + LastLevel + "-" + Percent + "%\n" +
-//                            "========================");
+            Discordbot.sendMsg(
+                    "==== 列車發車記錄(v0.3) ====\n" +
+                            "列車離站時間: " + Formatter.format(EndTime) + "\n" +
+                            "貼圖等級: " + LastLevel + "-" + Percent + "%\n" +
+                            "========================");
         });
         Client.getEventManager().onEvent(HypeTrainConductorUpdateEvent.class, (Event) -> {
             logger.info(Event.toString());
