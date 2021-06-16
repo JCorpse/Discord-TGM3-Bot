@@ -32,6 +32,8 @@ public class Twitchbot {
     private Integer LastProgress;
     private Integer LastGoal;
     private String Percent;
+    private boolean dondon_on = false;
+    private boolean Training = false;
 //    private String HypeTrainID;
 
     public static void main(String[] args) {
@@ -75,6 +77,9 @@ public class Twitchbot {
         });
         Client.getEventManager().onEvent(CheerEvent.class, event -> {
             logger.info("[" + event.getChannel().getName() + "] " + event.getUser().getName() + ": " + event.getMessage() + "Cheer ：" + event.getBits());
+            if (Training && event.getUser().getName() == "donjen1330") {
+                dondon_on = true;
+            }
         });
         Client.getEventManager().onEvent(DonationEvent.class, event -> {
             logger.info("[" + event.getChannel().getName() + "] " + event.getUser().getName() + ": " + event.getMessage() + "Donation ：" + event.getAmount() + "(" + event.getSource() + ")");
@@ -88,6 +93,8 @@ public class Twitchbot {
 //            HypeTrainID = Event.getData().getId();
 //            System.out.println(Event.getData().getId());
             logger.info(Event.getData().getId());
+            Training = true;
+            dondon_on = false;
         });
 
         Client.getEventManager().onEvent(HypeTrainProgressionEvent.class, (Event) -> {
@@ -107,11 +114,23 @@ public class Twitchbot {
         Client.getEventManager().onEvent(HypeTrainEndEvent.class, (Event) -> {
             logger.info(Event.toString());
             Instant EndTime = Event.getData().getEndedAt();
-            Discordbot.sendMsg(
-                    "==== 列車發車記錄(v0.3) ====\n" +
-                            "列車離站時間: " + Formatter.format(EndTime) + "\n" +
-                            "貼圖等級: " + LastLevel + "-" + Percent + "%\n" +
-                            "========================");
+            if (dondon_on) {
+                Discordbot.sendMsg(
+                        "==== 列車發車記錄(v0.4) ====\n" +
+                                "列車離站時間: " + Formatter.format(EndTime) + "\n" +
+                                "貼圖等級: " + LastLevel + "-" + Percent + "%\n" +
+                                "東~~~~: " + "這次居然上到車了\n" +
+                                "=======================");
+            } else {
+                Discordbot.sendMsg(
+                        "==== 列車發車記錄(v0.4) ====\n" +
+                                "列車離站時間: " + Formatter.format(EndTime) + "\n" +
+                                "貼圖等級: " + LastLevel + "-" + Percent + "%\n" +
+                                "東~~~~: " + "這次沒上車\n" +
+                                "=======================");
+            }
+            dondon_on = false;
+            Training = false;
         });
         Client.getEventManager().onEvent(HypeTrainConductorUpdateEvent.class, (Event) -> {
             logger.info(Event.toString());
