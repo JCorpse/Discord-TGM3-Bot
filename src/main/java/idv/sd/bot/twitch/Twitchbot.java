@@ -6,6 +6,7 @@ import com.github.twitch4j.TwitchClientBuilder;
 import com.github.twitch4j.chat.events.channel.ChannelMessageEvent;
 import com.github.twitch4j.chat.events.channel.CheerEvent;
 import com.github.twitch4j.chat.events.channel.DonationEvent;
+import com.github.twitch4j.chat.events.channel.ExtendSubscriptionEvent;
 import com.github.twitch4j.helix.domain.UserList;
 import com.github.twitch4j.pubsub.events.*;
 import idv.sd.bot.discord.Discordbot;
@@ -83,7 +84,17 @@ public class Twitchbot {
         });
         Client.getEventManager().onEvent(DonationEvent.class, event -> {
             logger.info("[" + event.getChannel().getName() + "] " + event.getUser().getName() + ": " + event.getMessage() + "Donation ：" + event.getAmount() + "(" + event.getSource() + ")");
+            if (Training && event.getUser().getName() == "donjen1330") {
+                dondon_on = true;
+            }
         });
+        Client.getEventManager().onEvent(ExtendSubscriptionEvent.class, event -> {
+            logger.info("[" + event.getChannel().getName() + "] " + event.getUser().getName() + "ExtendSubscription ：" + event.getCumulativeMonths());
+            if (Training && event.getUser().getName() == "donjen1330") {
+                dondon_on = true;
+            }
+        });
+
     }
 
     public void HypeTrainlistener() {
