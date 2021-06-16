@@ -3,6 +3,7 @@ package idv.sd.bot.twitch;
 import com.github.philippheuer.credentialmanager.domain.OAuth2Credential;
 import com.github.twitch4j.TwitchClient;
 import com.github.twitch4j.TwitchClientBuilder;
+import com.github.twitch4j.chat.events.channel.ChannelMessageEvent;
 import com.github.twitch4j.helix.domain.UserList;
 import com.github.twitch4j.pubsub.events.*;
 import idv.sd.bot.discord.Discordbot;
@@ -40,12 +41,14 @@ public class Twitchbot {
         init();
         getChannelId(ChannelName);
         HypeTrainlistener();
-//        Bitslistener();
+        Chatlistener();
         logger.info("Twitchbot Ready");
     }
 
     private void init() {
         Client = TwitchClientBuilder.builder()
+                .withEnableChat(true)
+                .withChatAccount(Credential)
                 .withEnablePubSub(true)
                 .withEnableHelix(true)
                 .withDefaultAuthToken(Credential)
@@ -60,6 +63,13 @@ public class Twitchbot {
         UserList resultList = Client.getHelix().getUsers(null, null, Arrays.asList(ChannelName)).execute();
         resultList.getUsers().forEach(user -> {
             ChannelId = user.getId();
+        });
+    }
+
+    private void Chatlistener() {
+        Client.getChat().joinChannel(ChannelName);
+        Client.getEventManager().onEvent(ChannelMessageEvent.class, event -> {
+            logger.info("[" + event.getChannel().getName() + "] " + event.getUser().getName() + ": " + event.getMessage());
         });
     }
 
