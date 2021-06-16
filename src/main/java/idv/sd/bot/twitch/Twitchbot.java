@@ -4,6 +4,8 @@ import com.github.philippheuer.credentialmanager.domain.OAuth2Credential;
 import com.github.twitch4j.TwitchClient;
 import com.github.twitch4j.TwitchClientBuilder;
 import com.github.twitch4j.chat.events.channel.ChannelMessageEvent;
+import com.github.twitch4j.chat.events.channel.CheerEvent;
+import com.github.twitch4j.chat.events.channel.DonationEvent;
 import com.github.twitch4j.helix.domain.UserList;
 import com.github.twitch4j.pubsub.events.*;
 import idv.sd.bot.discord.Discordbot;
@@ -70,6 +72,12 @@ public class Twitchbot {
         Client.getChat().joinChannel(ChannelName);
         Client.getEventManager().onEvent(ChannelMessageEvent.class, event -> {
             logger.info("[" + event.getChannel().getName() + "] " + event.getUser().getName() + ": " + event.getMessage());
+        });
+        Client.getEventManager().onEvent(CheerEvent.class, event -> {
+            logger.info("[" + event.getChannel().getName() + "] " + event.getUser().getName() + ": " + event.getMessage() + "Cheer ：" + event.getBits());
+        });
+        Client.getEventManager().onEvent(DonationEvent.class, event -> {
+            logger.info("[" + event.getChannel().getName() + "] " + event.getUser().getName() + ": " + event.getMessage() + "Donation ：" + event.getAmount() + "(" + event.getSource() + ")");
         });
     }
 
