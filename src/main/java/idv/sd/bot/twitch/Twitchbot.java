@@ -78,19 +78,19 @@ public class Twitchbot {
         });
         Client.getEventManager().onEvent(CheerEvent.class, event -> {
             logger.info("[" + event.getChannel().getName() + "] " + event.getUser().getName() + ": " + event.getMessage() + "Cheer ：" + event.getBits());
-            if (Training && event.getUser().getName() == "donjen1330") {
+            if (Training && event.getUser().getName().equalsIgnoreCase("donjen1330")) {
                 dondon_on = true;
             }
         });
         Client.getEventManager().onEvent(DonationEvent.class, event -> {
             logger.info("[" + event.getChannel().getName() + "] " + event.getUser().getName() + ": " + event.getMessage() + "Donation ：" + event.getAmount() + "(" + event.getSource() + ")");
-            if (Training && event.getUser().getName() == "donjen1330") {
+            if (Training && event.getUser().getName().equalsIgnoreCase("donjen1330")) {
                 dondon_on = true;
             }
         });
         Client.getEventManager().onEvent(ExtendSubscriptionEvent.class, event -> {
             logger.info("[" + event.getChannel().getName() + "] " + event.getUser().getName() + "ExtendSubscription ：" + event.getCumulativeMonths());
-            if (Training && event.getUser().getName() == "donjen1330") {
+            if (Training && event.getUser().getName().equalsIgnoreCase("donjen1330")) {
                 dondon_on = true;
             }
         });
