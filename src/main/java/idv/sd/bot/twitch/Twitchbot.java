@@ -100,6 +100,10 @@ public class Twitchbot {
     public void HypeTrainlistener() {
         Client.getPubSub().listenForHypeTrainEvents(Credential, ChannelId);
 
+        Client.getEventManager().onEvent(HypeTrainApproachingEvent.class, (Event) -> {
+            logger.info(Event.toString());
+        });
+
         Client.getEventManager().onEvent(HypeTrainStartEvent.class, (Event) -> {
 //            HypeTrainID = Event.getData().getId();
 //            System.out.println(Event.getData().getId());
