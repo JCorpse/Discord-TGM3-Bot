@@ -37,6 +37,7 @@ public class Discordbot {
                     .build()
                     .login()
                     .block();
+            isSafe();
         } catch (Exception e) {
             logger.error("Discordbot start error", e);
         }
