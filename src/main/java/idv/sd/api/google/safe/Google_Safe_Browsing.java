@@ -82,11 +82,11 @@ public class Google_Safe_Browsing {
                     }
                 }
                 result += "作用OS: " + OSStr + "\n";
-                result += "====  By Google   ====";
+                result += "====   By Google   ====";
             } else {
                 result = "==== 網址檢測(v0.1) ====\n" +
-                        "====      OK      ====\n" +
-                        "====  By Google   ====";
+                        "====        OK       ====\n" +
+                        "====   By Google    ====";
             }
             return result;
         } catch (Exception e) {
