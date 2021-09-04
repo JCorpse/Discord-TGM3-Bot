@@ -37,6 +37,7 @@ public class Twitchbot {
     private boolean Training = false;
 //    private String HypeTrainID;
 
+
     public static void main(String[] args) {
         Twitchbot a = new Twitchbot();
         a.start();
@@ -116,7 +117,7 @@ public class Twitchbot {
             logger.info(Event.toString());
             LastLevel = Event.getData().getProgress().getLevel().getValue();
             LastProgress = Event.getData().getProgress().getValue();
-            LastGoal = Event.getData().getProgress().getLevel().getGoal();
+            LastGoal = Event.getData().getProgress().getGoal();
             Percent = (new DecimalFormat("#.##").format(((float) LastProgress / LastGoal) * 100));
 
         });
@@ -124,7 +125,7 @@ public class Twitchbot {
             logger.info(Event.toString());
             LastLevel = Event.getData().getProgress().getLevel().getValue();
             LastProgress = Event.getData().getProgress().getValue();
-            LastGoal = Event.getData().getProgress().getLevel().getGoal();
+            LastGoal = Event.getData().getProgress().getGoal();
         });
         Client.getEventManager().onEvent(HypeTrainEndEvent.class, (Event) -> {
             logger.info(Event.toString());
