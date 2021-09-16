@@ -109,6 +109,11 @@ public class Twitchbot {
 //            HypeTrainID = Event.getData().getId();
 //            System.out.println(Event.getData().getId());
             logger.info(Event.getData().getId());
+            Discordbot.sendMsg(
+                    "==== 列車發車記錄(v0.4) ====\n" +
+                            "開車時間: " + Event.getData().getStartedAt().atZone(ZoneId.of("Asia/Taipei")).format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss")) + "\n" +
+                            "預計離站: " + Event.getData().getExpiresAt().atZone(ZoneId.of("Asia/Taipei")).format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss")) + "%\n" +
+                            "=======================");
             Training = true;
             dondon_on = false;
         });
