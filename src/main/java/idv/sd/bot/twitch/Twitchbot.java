@@ -95,6 +95,10 @@ public class Twitchbot {
                 dondon_on = true;
             }
         });
+        Client.getEventManager().onEvent(ChannelSubGiftEvent.class, event -> {
+            logger.info("[" + event.getData().getChannelId() + "] " + event + "ChannelSubGiftEvent ：" + event.toString());
+        });
+
 
     }
 
