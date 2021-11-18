@@ -3,10 +3,7 @@ package idv.sd.bot.twitch;
 import com.github.philippheuer.credentialmanager.domain.OAuth2Credential;
 import com.github.twitch4j.TwitchClient;
 import com.github.twitch4j.TwitchClientBuilder;
-import com.github.twitch4j.chat.events.channel.ChannelMessageEvent;
-import com.github.twitch4j.chat.events.channel.CheerEvent;
-import com.github.twitch4j.chat.events.channel.DonationEvent;
-import com.github.twitch4j.chat.events.channel.ExtendSubscriptionEvent;
+import com.github.twitch4j.chat.events.channel.*;
 import com.github.twitch4j.helix.domain.UserList;
 import com.github.twitch4j.pubsub.events.*;
 import idv.sd.bot.discord.Discordbot;
@@ -95,10 +92,12 @@ public class Twitchbot {
                 dondon_on = true;
             }
         });
-        Client.getEventManager().onEvent(ChannelSubGiftEvent.class, event -> {
-            logger.info("[" + event.getData().getChannelId() + "] " + event + "ChannelSubGiftEvent ：" + event.toString());
+        Client.getEventManager().onEvent(GiftSubscriptionsEvent.class, event -> {
+            logger.info("[" + event.getChannel().getName() + "] " + event.getUser().getName() + "GiftSubscriptionsEvent ：" + event.getSubscriptionPlan());
+            if (Training && event.getUser().getName().equalsIgnoreCase("donjen1330")) {
+                dondon_on = true;
+            }
         });
-
 
     }
 
