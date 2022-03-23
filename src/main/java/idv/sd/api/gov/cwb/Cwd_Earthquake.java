@@ -24,7 +24,7 @@ public class Cwd_Earthquake {
     }
 
     public static String[] getEarthquakeReport() {
-        String Report[] = new String[1];
+        String Report[] = new String[2];
         String ApiUrl = "https://opendata.cwb.gov.tw/api/v1/rest/datastore/E-A0015-001?Authorization=" + API_KEY + "&limit=1&format=JSON&areaName=";
         try {
             HttpClient Client = HttpClient.newBuilder().connectTimeout(Duration.ofMillis(30000)).build();
