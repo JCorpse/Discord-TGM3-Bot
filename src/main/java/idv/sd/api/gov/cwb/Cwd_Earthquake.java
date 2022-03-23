@@ -23,8 +23,8 @@ public class Cwd_Earthquake {
         getEarthquakeReport();
     }
 
-    public static String getEarthquakeReport() {
-        String Report = "";
+    public static String[] getEarthquakeReport() {
+        String Report[] = new String[1];
         String ApiUrl = "https://opendata.cwb.gov.tw/api/v1/rest/datastore/E-A0015-001?Authorization=" + API_KEY + "&limit=1&format=JSON&areaName=";
         try {
             HttpClient Client = HttpClient.newBuilder().connectTimeout(Duration.ofMillis(30000)).build();
@@ -40,10 +40,11 @@ public class Cwd_Earthquake {
             ObjectMapper mapper = new ObjectMapper();
             JsonNode ResJSON = mapper.readTree(Res.body());
             if (!ResJSON.isEmpty()) {
-                Report += "==== " + ResJSON.with("records").get("datasetDescription").asText() + "(v0.1) ====\n";
-                Report += ResJSON.with("records").get("earthquake").get(0).get("reportContent").asText() + "\n";
-                Report += ResJSON.with("records").get("earthquake").get(0).get("reportRemark").asText() + "\n";
-                Report += ResJSON.with("records").get("earthquake").get(0).get("reportImageURI").asText() + "\n";
+                Report[0] = "==== " + ResJSON.with("records").get("datasetDescription").asText() + "(v0.1) ====\n";
+                Report[0] += ResJSON.with("records").get("earthquake").get(0).get("reportContent").asText() + "\n";
+                Report[0] += ResJSON.with("records").get("earthquake").get(0).get("reportRemark").asText() + "\n";
+//                Report[0] += ResJSON.with("records").get("earthquake").get(0).get("reportImageURI").asText() + "\n";
+                Report[1] = ResJSON.with("records").get("earthquake").get(0).get("reportImageURI").asText();
             }
 
         } catch (Exception e) {

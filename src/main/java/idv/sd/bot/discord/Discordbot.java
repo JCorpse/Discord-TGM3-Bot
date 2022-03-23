@@ -10,6 +10,7 @@ import discord4j.core.event.domain.message.MessageCreateEvent;
 import discord4j.core.object.entity.Guild;
 import discord4j.core.object.entity.Message;
 import discord4j.core.object.entity.channel.MessageChannel;
+import discord4j.core.spec.EmbedCreateSpec;
 import discord4j.discordjson.Id;
 import discord4j.discordjson.json.ChannelData;
 import idv.sd.api.google.safe.Google_Safe_Browsing;
@@ -66,8 +67,11 @@ public class Discordbot {
             final Message message = event.getMessage();
             if (message.getContent().contains("!震")) {
                 final MessageChannel channel = message.getChannel().block();
-                String Res = Cwd_Earthquake.getEarthquakeReport();
-                channel.createMessage(Res).block();
+                String[] Res = Cwd_Earthquake.getEarthquakeReport();
+                channel.createMessage(Res[0]).block();
+                channel.createEmbed(embedCreateSpec -> {
+                    embedCreateSpec.setImage(Res[1]);
+                });
             }
         });
     }
