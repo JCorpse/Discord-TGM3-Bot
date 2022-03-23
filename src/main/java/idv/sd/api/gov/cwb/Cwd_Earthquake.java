@@ -2,7 +2,7 @@ package idv.sd.api.gov.cwb;
 
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import idv.sd.api.google.safe.json.safeO;
+import discord4j.core.spec.EmbedCreateSpec;
 import idv.sd.api.gov.constant.GovConstant;
 
 import java.net.URI;
@@ -23,8 +23,8 @@ public class Cwd_Earthquake {
         getEarthquakeReport();
     }
 
-    public static String[] getEarthquakeReport() {
-        String Report[] = new String[2];
+    public static EmbedCreateSpec getEarthquakeReport() {
+        EmbedCreateSpec Embed = null;
         String ApiUrl = "https://opendata.cwb.gov.tw/api/v1/rest/datastore/E-A0015-001?Authorization=" + API_KEY + "&limit=1&format=JSON&areaName=";
         try {
             HttpClient Client = HttpClient.newBuilder().connectTimeout(Duration.ofMillis(30000)).build();
@@ -40,16 +40,21 @@ public class Cwd_Earthquake {
             ObjectMapper mapper = new ObjectMapper();
             JsonNode ResJSON = mapper.readTree(Res.body());
             if (!ResJSON.isEmpty()) {
-                Report[0] = "==== " + ResJSON.with("records").get("datasetDescription").asText() + "(v0.1) ====\n";
-                Report[0] += ResJSON.with("records").get("earthquake").get(0).get("reportContent").asText() + "\n";
-                Report[0] += ResJSON.with("records").get("earthquake").get(0).get("reportRemark").asText() + "\n";
-//                Report[0] += ResJSON.with("records").get("earthquake").get(0).get("reportImageURI").asText() + "\n";
-                Report[1] = ResJSON.with("records").get("earthquake").get(0).get("reportImageURI").asText();
+                Embed = EmbedCreateSpec.builder()
+                        .title(ResJSON.with("records").get("datasetDescription").asText()+"(v0.1)")
+                        .description(ResJSON.with("records").get("earthquake").get(0).get("reportContent").asText())
+                        .image(ResJSON.with("records").get("earthquake").get(0).get("reportImageURI").asText())
+                        .build();
+//                Report[0] = "==== " +  + " ====\n";
+//                Report[0] += ResJSON.with("records").get("earthquake").get(0).get("reportContent").asText() + "\n";
+//                Report[0] += ResJSON.with("records").get("earthquake").get(0).get("reportRemark").asText() + "\n";
+////                Report[0] += ResJSON.with("records").get("earthquake").get(0).get("reportImageURI").asText() + "\n";
+//                Report[1] = ResJSON.with("records").get("earthquake").get(0).get("reportImageURI").asText();
             }
 
         } catch (Exception e) {
             e.printStackTrace();
         }
-        return Report;
+        return  Embed;
     }
 }

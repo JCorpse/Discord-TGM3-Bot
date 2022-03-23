@@ -67,11 +67,8 @@ public class Discordbot {
             final Message message = event.getMessage();
             if (message.getContent().contains("!震")) {
                 final MessageChannel channel = message.getChannel().block();
-                String[] Res = Cwd_Earthquake.getEarthquakeReport();
-                channel.createMessage(Res[0]).block();
-                channel.createEmbed(embedCreateSpec -> {
-                    embedCreateSpec.setImage(Res[1]);
-                });
+                EmbedCreateSpec Embed = Cwd_Earthquake.getEarthquakeReport();
+                channel.createMessage(Embed).block();
             }
         });
     }
