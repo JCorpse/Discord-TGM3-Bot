@@ -44,7 +44,6 @@ public class Cwd_Earthquake {
                 Report += ResJSON.with("records").get("earthquake").get(0).get("reportContent").asText() + "\n";
                 Report += ResJSON.with("records").get("earthquake").get(0).get("reportRemark").asText() + "\n";
                 Report += ResJSON.with("records").get("earthquake").get(0).get("reportImageURI").asText() + "\n";
-                Report += ResJSON.with("records").get("earthquake").get(0).get("earthquakeInfo").get("originTime").asText() + "\n";
             }
 
         } catch (Exception e) {
