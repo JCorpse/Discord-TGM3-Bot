@@ -15,7 +15,8 @@ import java.time.Instant;
 import java.util.Random;
 
 public class Cwd_Earthquake {
-    private  static final String API_KEY = GovConstant.CWD_KEY.getKey();
+    private static final String API_KEY = GovConstant.CWD_KEY.getKey();
+    private static Random random = new Random();
 
     public static void main(String[] args) {
         Cwd_Earthquake a = new Cwd_Earthquake();
@@ -43,16 +44,15 @@ public class Cwd_Earthquake {
             ObjectMapper mapper = new ObjectMapper();
             JsonNode ResJSON = mapper.readTree(Res.body());
             if (!ResJSON.isEmpty()) {
-                Random random = new Random(255);
                 Embed = EmbedCreateSpec.builder()
-                        .color(Color.of(random.nextInt(),random.nextInt(),random.nextInt()))
-                        .title(ResJSON.with("records").get("datasetDescription").asText()+"(v0.1)")
-                        .description(ResJSON.with("records").get("earthquake").get(0).get("reportContent").asText().replaceAll("\"[0-9]{2}/[0-9]{2}-[0-9]{2}:[0-9]{2}\"",""))
+                        .color(Color.of(random.nextInt(255), random.nextInt(255), random.nextInt(255)))
+                        .title(ResJSON.with("records").get("datasetDescription").asText() + "(v0.1)")
+                        .description(ResJSON.with("records").get("earthquake").get(0).get("reportContent").asText().replaceAll("\"[0-9]{2}/[0-9]{2}-[0-9]{2}:[0-9]{2}\"", ""))
                         .image(ResJSON.with("records").get("earthquake").get(0).get("reportImageURI").asText())
                         .url(ResJSON.with("records").get("earthquake").get(0).get("web").asText())
-                        .addField(ResJSON.with("records").get("earthquake").get(0).get("earthquakeInfo").get("magnitude").get("magnitudeType").asText(),ResJSON.with("records").get("earthquake").get(0).get("earthquakeInfo").get("magnitude").get("magnitudeValue").asText(),true)
-                        .addField("發生時間",ResJSON.with("records").get("earthquake").get(0).get("earthquakeInfo").get("originTime").asText(),true)
-                        .addField("發生位置",ResJSON.with("records").get("earthquake").get(0).get("earthquakeInfo").get("epiCenter").get("location").asText(),true)
+                        .addField(ResJSON.with("records").get("earthquake").get(0).get("earthquakeInfo").get("magnitude").get("magnitudeType").asText(), ResJSON.with("records").get("earthquake").get(0).get("earthquakeInfo").get("magnitude").get("magnitudeValue").asText(), true)
+                        .addField("發生時間", ResJSON.with("records").get("earthquake").get(0).get("earthquakeInfo").get("originTime").asText(), true)
+                        .addField("發生位置", ResJSON.with("records").get("earthquake").get(0).get("earthquakeInfo").get("epiCenter").get("location").asText(), true)
                         .timestamp(Instant.now())
                         .build();
 //                Report[0] = "==== " +  + " ====\n";
@@ -65,6 +65,6 @@ public class Cwd_Earthquake {
         } catch (Exception e) {
             e.printStackTrace();
         }
-        return  Embed;
+        return Embed;
     }
 }
