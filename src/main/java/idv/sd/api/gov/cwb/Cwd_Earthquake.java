@@ -47,7 +47,7 @@ public class Cwd_Earthquake {
                 Embed = EmbedCreateSpec.builder()
                         .color(Color.of(random.nextInt(255), random.nextInt(255), random.nextInt(255)))
                         .title(ResJSON.with("records").get("datasetDescription").asText() + "(v0.1)")
-                        .description(ResJSON.with("records").get("earthquake").get(0).get("reportContent").asText().replaceAll("\"[0-9]{2}/[0-9]{2}-[0-9]{2}:[0-9]{2}\"", ""))
+                        .description(ResJSON.with("records").get("earthquake").get(0).get("reportContent").asText().replaceAll("[0-9]{2}/[0-9]{2}-[0-9]{2}:[0-9]{2}", ""))
                         .image(ResJSON.with("records").get("earthquake").get(0).get("reportImageURI").asText())
                         .url(ResJSON.with("records").get("earthquake").get(0).get("web").asText())
                         .addField(ResJSON.with("records").get("earthquake").get(0).get("earthquakeInfo").get("magnitude").get("magnitudeType").asText(), ResJSON.with("records").get("earthquake").get(0).get("earthquakeInfo").get("magnitude").get("magnitudeValue").asText(), true)
