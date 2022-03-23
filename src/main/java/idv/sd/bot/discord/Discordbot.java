@@ -13,6 +13,7 @@ import discord4j.core.object.entity.channel.MessageChannel;
 import discord4j.discordjson.Id;
 import discord4j.discordjson.json.ChannelData;
 import idv.sd.api.google.safe.Google_Safe_Browsing;
+import idv.sd.api.gov.cwb.Cwd_Earthquake;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -38,6 +39,7 @@ public class Discordbot {
                     .login()
                     .block();
             isSafe();
+            ReportEarthquake();
         } catch (Exception e) {
             logger.error("Discordbot start error", e);
         }
@@ -57,6 +59,17 @@ public class Discordbot {
                 channel.createMessage(Res).block();
             }
         });
+    }
 
+    private void ReportEarthquake() {
+        Client.on(MessageCreateEvent.class).subscribe(event -> {
+            final Message message = event.getMessage();
+            if (message.getContent().contains("!震")) {
+                final MessageChannel channel = message.getChannel().block();
+                String Url = message.getContent().split(" ")[1];
+                String Res = Cwd_Earthquake.getEarthquakeReport();
+                channel.createMessage(Res).block();
+            }
+        });
     }
 }

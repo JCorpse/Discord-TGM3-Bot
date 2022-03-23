@@ -1,12 +1,12 @@
 package idv.sd.api.google.constant;
 
-public enum GoogleKeys {
+public enum GoogleConstant {
 
     Safe_Browsing("AIzaSyAZGBUSYFAOreE0vt55XrwySCpOrDn5yjw");
 
     private final String Key;
 
-    private GoogleKeys(String Key) {
+    private GoogleConstant(String Key) {
         this.Key = Key;
     }
 

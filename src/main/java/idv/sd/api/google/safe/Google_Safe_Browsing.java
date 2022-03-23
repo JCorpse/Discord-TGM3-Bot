@@ -2,7 +2,7 @@ package idv.sd.api.google.safe;
 
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import idv.sd.api.google.constant.GoogleKeys;
+import idv.sd.api.google.constant.GoogleConstant;
 import idv.sd.api.google.constant.ThreatType;
 import idv.sd.api.google.safe.json.safeO;
 
@@ -17,18 +17,7 @@ import java.util.Iterator;
 import java.util.Map;
 
 public class Google_Safe_Browsing {
-    private static final String API_KEY = GoogleKeys.Safe_Browsing.getKey();
-
-    public static void main(String[] args) {
-        Google_Safe_Browsing a = new Google_Safe_Browsing();
-        a.test();
-    }
-
-    private void test() {
-//        isSafe("https://bit.ly/3fq5LVp");
-        isSafe("https://www.telerik.com/download/fiddler/fiddler4");
-    }
-
+    private static final String API_KEY = GoogleConstant.Safe_Browsing.getKey();
 
     public static String isSafe(String Url) {
         String result = new String();
