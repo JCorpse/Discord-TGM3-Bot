@@ -66,7 +66,6 @@ public class Discordbot {
             final Message message = event.getMessage();
             if (message.getContent().contains("!震")) {
                 final MessageChannel channel = message.getChannel().block();
-                String Url = message.getContent().split(" ")[1];
                 String Res = Cwd_Earthquake.getEarthquakeReport();
                 channel.createMessage(Res).block();
             }
