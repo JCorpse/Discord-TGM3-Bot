@@ -68,7 +68,12 @@ public class Discordbot {
             if (message.getContent().contains("!震")) {
                 final MessageChannel channel = message.getChannel().block();
                 EmbedCreateSpec Embed = Cwd_Earthquake.getEarthquakeReport();
-                channel.createMessage(Embed).block();
+                if(Embed!=null){
+                    channel.createMessage(Embed).block();
+                }else {
+                    channel.createMessage("ㄅ欠，政府的API太廢，沒反應，你等等在試試吧 ㄏ").block();
+                }
+
             }
         });
     }
