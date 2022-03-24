@@ -6,13 +6,18 @@ import discord4j.core.DiscordClientBuilder;
 import discord4j.core.GatewayDiscordClient;
 
 
+import discord4j.core.event.domain.lifecycle.ReadyEvent;
 import discord4j.core.event.domain.message.MessageCreateEvent;
 import discord4j.core.object.entity.Guild;
+import discord4j.core.object.entity.GuildEmoji;
 import discord4j.core.object.entity.Message;
 import discord4j.core.object.entity.channel.MessageChannel;
 import discord4j.core.spec.EmbedCreateSpec;
+import discord4j.core.spec.MessageCreateSpec;
+import discord4j.core.spec.MessageEditSpec;
 import discord4j.discordjson.Id;
 import discord4j.discordjson.json.ChannelData;
+import discord4j.discordjson.possible.Possible;
 import idv.sd.api.google.safe.Google_Safe_Browsing;
 import idv.sd.api.gov.cwb.Cwd_Earthquake;
 import org.slf4j.Logger;
@@ -32,6 +37,7 @@ public class Discordbot {
         Discordbot a = new Discordbot();
         a.start();
     }
+
 
     private void start() {
         try {
@@ -65,12 +71,12 @@ public class Discordbot {
     private void ReportEarthquake() {
         Client.on(MessageCreateEvent.class).subscribe(event -> {
             final Message message = event.getMessage();
-            if (message.getContent().contains("!震")) {
+            if (message.getContent().equalsIgnoreCase("!震")) {
                 final MessageChannel channel = message.getChannel().block();
                 EmbedCreateSpec Embed = Cwd_Earthquake.getEarthquakeReport();
-                if(Embed!=null){
+                if (Embed != null) {
                     channel.createMessage(Embed).block();
-                }else {
+                } else {
                     channel.createMessage("ㄅ欠，政府的API太廢，沒反應，你等等在試試吧 ㄏ").block();
                 }
 
