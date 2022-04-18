@@ -19,7 +19,7 @@ import java.util.Locale;
 
 public class Twitchbot {
     private final Logger logger = LoggerFactory.getLogger(Twitchbot.class);
-    private final String OAUTH = "hwf7l22bvrpxshg1242xrzm9y67sqg";
+    private final String OAUTH = System.getenv("Twitch_OAUTH");
     private final String ChannelName = "tetristhegrandmaster3";
     private OAuth2Credential Credential = new OAuth2Credential("twitch", OAUTH);
     private Discordbot Discordbot = new Discordbot();

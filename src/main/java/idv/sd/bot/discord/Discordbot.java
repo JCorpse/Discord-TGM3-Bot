@@ -25,7 +25,7 @@ import org.slf4j.LoggerFactory;
 
 public class Discordbot {
     private final Logger logger = LoggerFactory.getLogger(Discordbot.class);
-    private final String TOKEN = "ODUxMTI1MDU5MTUzMTY2MzM2.YLzt-w.WEkznQCFa2cZ0mcu3WP-4Qv_HTQ";
+    private final String TOKEN = System.getenv("Discord_TOKEN");
     private final String ChannelId = "812636716640501760";
     private GatewayDiscordClient Client;
 
