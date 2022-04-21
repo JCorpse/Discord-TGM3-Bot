@@ -2,7 +2,7 @@ package idv.sd.api.google.constant;
 
 public enum GoogleConstant {
 
-    Safe_Browsing("AIzaSyAZGBUSYFAOreE0vt55XrwySCpOrDn5yjw");
+    Safe_Browsing(System.getenv("Safe_Browsing"));
 
     private final String Key;
 
