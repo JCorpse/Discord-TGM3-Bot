@@ -17,17 +17,17 @@
         <dependency>
             <groupId>com.github.twitch4j</groupId>
             <artifactId>twitch4j</artifactId>
-            <version>1.5.0</version>
+            <version>1.9.0</version>
         </dependency>
-            <dependency>
-                <groupId>com.discord4j</groupId>
-                <artifactId>discord4j-core</artifactId>
-                <version>3.2.2</version>
-            </dependency>
+        <dependency>
+            <groupId>com.discord4j</groupId>
+            <artifactId>discord4j-core</artifactId>
+            <version>3.2.2</version>
+        </dependency>
         <dependency>
             <groupId>ch.qos.logback</groupId>
             <artifactId>logback-classic</artifactId>
-            <version>1.2.3</version>
+            <version>1.2.11</version>
         </dependency>
     </dependencies>
 
