@@ -47,6 +47,7 @@ public class Discordbot {
                     .block();
             isSafe();
             ReportEarthquake();
+            attest();
         } catch (Exception e) {
             logger.error("Discordbot start error", e);
         }
@@ -80,6 +81,16 @@ public class Discordbot {
                     channel.createMessage("ㄅ欠，政府的API太廢，沒反應，你等等在試試吧 ㄏ").block();
                 }
 
+            }
+        });
+    }
+
+    private void attest() {
+        Client.on(MessageCreateEvent.class).subscribe(event -> {
+            final Message message = event.getMessage();
+            if (message.getContent().equalsIgnoreCase("!at")) {
+                final MessageChannel channel = message.getChannel().block();
+                channel.createMessage("<@&967102403163861042>").block();
             }
         });
     }
