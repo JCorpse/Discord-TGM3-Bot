@@ -141,14 +141,14 @@ public class Twitchbot {
             Instant EndTime = Event.getData().getEndedAt();
             if (dondon_on) {
                 Discordbot.sendMsg(
-                        "==== 列車發車記錄(v0.4) ====\n" +
+                        "==== 列車發車記錄(v0.5) ====\n" +
                                 "列車離站時間: " + Formatter.format(EndTime) + "\n" +
                                 "貼圖等級: " + LastLevel + "-" + Percent + "%\n" +
                                 "東~~~~: " + "這次居然上到車了\n" +
                                 "=======================");
             } else {
                 Discordbot.sendMsg(
-                        "==== 列車發車記錄(v0.4) ====\n" +
+                        "==== 列車發車記錄(v0.5) ====\n" +
                                 "列車離站時間: " + Formatter.format(EndTime) + "\n" +
                                 "貼圖等級: " + LastLevel + "-" + Percent + "%\n" +
                                 "東~~~~: " + "這次沒上車\n" +
