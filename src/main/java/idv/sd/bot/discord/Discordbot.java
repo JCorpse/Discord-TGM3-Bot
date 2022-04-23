@@ -47,7 +47,7 @@ public class Discordbot {
                     .block();
             isSafe();
             ReportEarthquake();
-            attest();
+//            attest();
         } catch (Exception e) {
             logger.error("Discordbot start error", e);
         }
