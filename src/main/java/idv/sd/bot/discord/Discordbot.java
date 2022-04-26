@@ -80,7 +80,6 @@ public class Discordbot {
                 } else {
                     channel.createMessage("ㄅ欠，政府的API太廢，沒反應，你等等在試試吧 ㄏ").block();
                 }
-
             }
         });
     }

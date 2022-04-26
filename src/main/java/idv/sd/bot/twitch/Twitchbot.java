@@ -98,7 +98,6 @@ public class Twitchbot {
                 dondon_on = true;
             }
         });
-
     }
 
     public void HypeTrainlistener() {
@@ -173,4 +172,6 @@ public class Twitchbot {
             logger.info(Event.toString());
         });
     }
+
+    private void test1(){}
 }
