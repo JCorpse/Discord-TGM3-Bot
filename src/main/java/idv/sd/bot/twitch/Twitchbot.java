@@ -172,6 +172,4 @@ public class Twitchbot {
             logger.info(Event.toString());
         });
     }
-
-    private void test1(){}
 }
