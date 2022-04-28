@@ -55,11 +55,6 @@ public class Cwd_Earthquake {
                         .addField("發生位置", ResJSON.with("records").get("earthquake").get(0).get("earthquakeInfo").get("epiCenter").get("location").asText(), true)
                         .timestamp(Instant.now())
                         .build();
-//                Report[0] = "==== " +  + " ====\n";
-//                Report[0] += ResJSON.with("records").get("earthquake").get(0).get("reportContent").asText() + "\n";
-//                Report[0] += ResJSON.with("records").get("earthquake").get(0).get("reportRemark").asText() + "\n";
-////                Report[0] += ResJSON.with("records").get("earthquake").get(0).get("reportImageURI").asText() + "\n";
-//                Report[1] = ResJSON.with("records").get("earthquake").get(0).get("reportImageURI").asText();
             }
 
         } catch (Exception e) {

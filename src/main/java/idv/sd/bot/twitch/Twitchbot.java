@@ -162,7 +162,7 @@ public class Twitchbot {
         });
         Client.getEventManager().onEvent(HypeTrainCooldownExpirationEvent.class, (Event) -> {
             logger.info(Event.toString());
-            //            Discordbot.sendMsg(Event.getFiredAt().toString());
+//            Discordbot.sendMsg(Event.getFiredAt().toString());
         });
     }
 

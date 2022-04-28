@@ -83,21 +83,4 @@ public class Discordbot {
             }
         });
     }
-
-    private void attest() {
-        Client.on(MessageCreateEvent.class).subscribe(event -> {
-            final Message message = event.getMessage();
-            if (message.getContent().equalsIgnoreCase("!at")) {
-                final MessageChannel channel = message.getChannel().block();
-                    channel.createMessage("""
-                            <@&806592766347968594>\n
-                            <@&967444040805122090>\n
-                            <@&967104871046189066>\n
-                            <@&967111515578699788>\n
-                            <@&967105052999311380>\n
-                            <@&967446457835749376>\n
-                            """).block();
-            }
-        });
-    }
 }
